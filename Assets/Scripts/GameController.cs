@@ -7,13 +7,20 @@ public class GameController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI wordDisplay;
     [SerializeField] private TextMeshProUGUI resultText;
     [SerializeField] private float timeLimit = 15f;
+    [SerializeField] public GameObject mainGameMenu;
+    [SerializeField] public GameObject gameOverMenu;
+    [SerializeField] public GameObject mainMenu;
+
+   
 
     private string currentWord;
     private float currentTime;
-
+    
     private void Start()
     {
         StartNewTurn();
+        mainGameMenu.SetActive(true);
+        gameOverMenu.SetActive(false);
     }
 
     private void StartNewTurn()
@@ -38,7 +45,9 @@ public class GameController : MonoBehaviour
 
     private string GetRandomWord()
     {
-        string[] words = { "oyun", "kelime", "þans", "harf", "bilgisayar" };
+        string[] words = { "game", "word", "internet", "letter", "computer", "television", "table", "arm", "headphone" , "sun" , "life" , "cup", "glasses", "car", "accident"
+        ,"afford", "fish", "glow", "iron", "jacket", "kill", "leaf", "luxury", "nothing", "network"};
+
         return words[Random.Range(0, words.Length)];
     }
 
@@ -73,5 +82,16 @@ public class GameController : MonoBehaviour
         {
             resultText.text = "Yanlýþ!";
         }
+    }
+
+    public void GameOver()
+    {
+        mainGameMenu.SetActive(false);
+        gameOverMenu.SetActive(true);
+    }
+    public void StartButton()
+    {
+        mainMenu.SetActive(false);
+        mainGameMenu.SetActive(true);
     }
 }
